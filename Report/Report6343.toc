@@ -1,0 +1,10 @@
+\contentsline {section}{Contents}{i}{chapter*.1}
+\contentsline {section}{List of Figures}{ii}{chapter*.2}
+\contentsline {section}{List of Tables}{iii}{chapter*.3}
+\contentsline {section}{\numberline {1}Sample Section 1}{1}{section.0.1}
+\contentsline {section}{\numberline {2}Sample Section 2}{2}{section.0.2}
+\contentsline {section}{\numberline {3}Sample Section 3}{3}{section.0.3}
+\contentsline {section}{\numberline {4}Sample Section 4}{4}{section.0.4}
+\contentsline {section}{\numberline {5}Sample Section 5}{5}{section.0.5}
+\contentsline {section}{Appendices}{6}{section*.8}
+\contentsline {section}{\numberline {A}Sample Appendix}{6}{section.Alph0.1}

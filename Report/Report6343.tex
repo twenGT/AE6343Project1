@@ -1,0 +1,51 @@
+% Source: Report Template provided by instructors for Fall 2018 AE 6343 Report
+\documentclass[12pt]{report}
+\usepackage[hidelinks]{hyperref}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx, placeins} 
+\usepackage{verbatim}  
+\usepackage{fancyhdr, fullpage}
+\usepackage{Parts/Info/information} % Put your name in this file 
+
+\renewcommand{\thesection}{\arabic{section}}
+
+\setlength{\voffset}{-12pt}
+\setlength{\topmargin}{0pt} 
+\setlength{\headheight}{12pt}
+\setlength{\headsep}{12pt}
+
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\lhead{\footnotesize\normalfont Aircraft Constraint Analysis}
+\rhead{\footnotesize\normalfont \studentone}
+
+\fancypagestyle{plain}{ 
+  \fancyhf{} 
+  \cfoot{\footnotesize\normalfont
+         \thepage}
+ }
+
+\begin{document}
+\input{DoNotTouch/FrontMatter6343}
+\pagenumbering{arabic} 
+\input{Parts/Section1}
+\clearpage
+\phantomsection
+\input{Parts/Section2}
+\clearpage
+\phantomsection
+\input{Parts/Section3}
+\clearpage
+\phantomsection
+\input{Parts/Section4} 
+\clearpage
+\phantomsection
+\input{Parts/Section5}
+\clearpage
+\phantomsection
+\appendix
+\addcontentsline{toc}{section}{Appendices}
+\vspace*{0.855in}\hspace{-0.24in}{\huge\textbf{Appendices}}\vspace{0.25in}
+\renewcommand{\thesection}{\Alph{section}}
+\input{Parts/Appendix}
+\end{document}
