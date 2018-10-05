@@ -1,5 +1,5 @@
-function [ T, rho ] = atmData( h_ft )
-%From Raymer pg 73
+function [ T, rho, a ] = atmData( h_ft )
+%RAYMER pg.73
 %Input altitiude h[ft]
 %Output pressure P[Pa], temperature T[K], density rho[kg/m^3]
 
@@ -17,6 +17,8 @@ if h < 11000
     T = T_0 - B*h;
 else
     T = 216.65;
+    
+a = sqrt(1.4*1716.5*T);
 
 end
 
