@@ -28,7 +28,7 @@ global h3
 rho_ref = 0.002377; %slugs/ft^3
 T_ref = 518.688;    %R
 P_ref = 2116.8;     %psft
-a_ref = 1116.45;    %R
+a_ref = 1116.45;    %ft/s
 g = 32.174;         %ft/s^2
 
 %F-86L Data
