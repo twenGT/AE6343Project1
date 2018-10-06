@@ -1,4 +1,4 @@
-function [T, P, rho, a] = atmData(h)
+function [ T, P rho, a ] = atmData( h )
 %RAYMER pg.73
 %Input altitiude h[ft]
 %Output pressure P[psf], temperature T[R], density rho[slugs/ft^3]
@@ -6,6 +6,7 @@ function [T, P, rho, a] = atmData(h)
 
 global T_ref
 global P_ref
+
 global rho_ref
 
 B = 0.003566;   %R/ft

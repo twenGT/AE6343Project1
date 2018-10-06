@@ -2,6 +2,8 @@ function [ ] = designParametersAPTA( ~ )
 %Design parameters for Advanced Pilot Training Aircraft
 
 global rho_ref
+global g
+
 
 % global AR
 % global e
@@ -15,6 +17,7 @@ global TSL_Mil
 global TSL_Nml
 
 rho_ref = 0.002377; %slugs/ft^3
+g = 32.174;         %ft/s^2
 
 AR = 4.6;
 taper_ratio = 0.6;
