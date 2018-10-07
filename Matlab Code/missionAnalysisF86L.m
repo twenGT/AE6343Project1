@@ -116,25 +116,39 @@ beta(6) = W(6)/W(1);
 %6.Acclerating climb
 %Assumes military power
 n = 10;
-VAC2 = linspace(VCruise, VCruise, n);
-%VAC2 = linspace(VCruise, VCombat, n);
-hAC2 = linspace(h4, h6, n);
-WAC2 = zeros(1,n);
-WAC2(1) = W(6);
+hAC2a = linspace(h4, h6, n);
+WAC2a = zeros(1,n);
+WAC2a(1) = W(6);
 
 for i = 1:n-1
-    [~, ~, ~, a] = atmData(hAC2(i));
-    MAC = VAC2(i)/a;
-    CL = liftCoeff(WAC2(i), S, hAC2(i), VAC2(i), 1);
+    [~, ~, ~, a] = atmData(hAC2a(i));
+    MAC = VCruise/a;
+    CL = liftCoeff(WAC2a(i), S, hAC2a(i), VCruise, 1);
     [CD, ~] = dragCoeff(CL, MAC, 1);
-    T = thrust(MAC, TSL_Mil*1.2, hAC2(i), 1);
-    u = CD/CL*WAC2(i)/T;
-    WAC2(i+1) = WAC2(i)*exp(-TSFC(MAC, hAC2(i), 1)/VAC1(i)*...
-        (hAC2(i+1) - hAC2(i))/(1 - u));
-%        ((hAC2(i+1) - hAC2(i)) + (VAC2(i+1)^2 - VAC2(i)^2)/(2*g))/(1 - u));
+    T = thrust(MAC, TSL_Mil*1.2, hAC2a(i), 1);
+    u = CD/CL*WAC2a(i)/T;
+    WAC2a(i+1) = WAC2a(i)*exp(-TSFC(MAC, hAC2a(i), 1)/VCruise*...
+        (hAC2a(i+1) - hAC2a(i))/(1 - u));
 end
 
-W(7) = WAC2(end);
+n = 10;
+VAC2b = linspace(VCruise, VCombat, n);
+WAC2b = zeros(1,n);
+WAC2b(1) = WAC2a(end);
+
+for i = 1:n-1
+    [~, ~, ~, a] = atmData(h6);
+    MAC = VAC2b(i)/a;
+    CL = liftCoeff(WAC2b(i), S, h6, VAC2b(i), 1);
+    [CD, ~] = dragCoeff(CL, MAC, 1);
+    T = thrust(MAC, TSL_Mil*1.2, h6, 1);
+    u = CD/CL*WAC2b(i)/T;
+    WAC2b(i+1) = WAC2b(i)*exp(-TSFC(MAC, h6, 1)/VAC2b(i)*...
+        ((VAC2b(i+1)^2 - VAC2b(i)^2)/(2*g))/(1 - u));
+end
+
+
+W(7) = WAC2b(end);
 beta(7) = W(7)/W(1);
 
 %7.Combat
