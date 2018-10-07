@@ -1,4 +1,4 @@
-function [ ] = designParametersF86L( ~ )
+function [ ] = designParametersF86L(~)
 %Design parameters for F86L
 
 global rho_ref
@@ -21,15 +21,17 @@ global TSL_Nml
 global CL_MaxTO
 global CL_MaxLD
 
-
 global VCruise
+glonba
 
 global h3
+global h4
+global h6
 
 rho_ref = 0.002377; %slugs/ft^3
 T_ref = 518.688;    %R
 P_ref = 2116.8;     %psft
-a_ref = 1116.45;    %R
+a_ref = 1116.45;    %ft/s
 g = 32.174;         %ft/s^2
 
 %F-86L Data
@@ -51,16 +53,15 @@ TSL_Nml = 5100; %lbf
 CL_MaxTO = 1.6;
 CL_MaxLD = 2;
 
-C_cruise        = 0.9 /3600;
-C_loiter        = 0.8 /3600;
-C_milSubsonic   = 1.35/3600;
-C_milSupersonic = 1.45/3600;
-C_maxPower      = 2   /3600;
-
 %468 knots
 VCruise = 468*1.688;
+%536 knots
+VCombat = 468*1.688;
+
 
 h3 = 35400;     %ft
+h4 = 38700;     %ft
+h6 = 47550;     %ft
 
 
 end

@@ -18,12 +18,16 @@ global TSL_Max
 global TSL_Mil
 global TSL_Nml
 
-global CL_MaxTO
-global CL_MaxLD
+global CL_Max
 
 global VCruise
+global VCombat
 
 global h3
+global h4
+global h6
+global h8
+
 
 rho_ref = 0.002377; %slugs/ft^3
 T_ref = 518.688;    %R
@@ -47,13 +51,19 @@ TSL_Mil = 5550; %lbf
 TSL_Nml = 5100; %lbf
 
 %SLIDES, Single slot
-CL_MaxTO = 1.6;
-CL_MaxLD = 2;
+CL_Max = 1.6;
+%CL_MaxLD = 2;
 
 %468 knots
 VCruise = 468*1.688;
+%536 knots
+VCombat = 536*1.688;
+
 
 h3 = 35400;     %ft
+h4 = 38700;     %ft
+h6 = 47550;     %ft
+h8 = 37000;     %ft
 
 
 end

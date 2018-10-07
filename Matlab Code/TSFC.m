@@ -1,4 +1,4 @@
-function [tsfc] = TSFC(scenario, M, h)
+function [tsfc] = TSFC(M, h, scenario)
 %scenario == 1: military
 %scenario == 2: maximum (with after-burner)
 %scenario == 3: subsonic cruise
