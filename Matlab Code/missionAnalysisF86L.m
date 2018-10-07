@@ -40,8 +40,7 @@ MTA = VTA/a_ref;
 
 for i = 2:n
     [CD, ~] = dragCoeff(CL_Max, MTA(i), 1);
-    T = thrust(MTA(i), TSL_Max, 0, 2);
-    u = CD*qTA(i)*S/T;
+    u = CD*qTA(i)*S/thrust(MTA(i), TSL_Max, 0, 2);
     WTA(i) = WTA(i-1)*exp(-TSFC(MTA(i), 0, 2)/g*(VTA(i)-VTA(i-1))/(1-u));
 end
 
@@ -65,8 +64,7 @@ for i = 1:n-1
     MAC = VAC1(i)/a;
     CL = liftCoeff(WAC1(i), S, hAC1(i), VAC1(i), 1);
     [CD, ~] = dragCoeff(CL, MAC, 1);
-    T = thrust(MAC, TSL_Mil, hAC1(i), 1);
-    u = CD/CL*WAC1(i)/T;
+    u = CD/CL*WAC1(i)/thrust(MAC, TSL_Mil, hAC1(i), 1);
     WAC1(i+1) = WAC1(i)*exp(-TSFC(MAC, hAC1(i), 1)/VAC1(i)*...
         ((hAC1(i+1) - hAC1(i)) + (VAC1(i+1)^2 - VAC1(i)^2)/(2*g))/(1 - u));
 end
@@ -85,8 +83,7 @@ for i = 1:n-1
     MCC1 = VCruise/a;
     CL = liftCoeff(WCC1(i), S, hCC1(i), VCruise, 1);
     [CD, ~] = dragCoeff(CL, MCC1, 1);
-    T = thrust(MCC1, TSL_Mil*1.1, hCC1(i), 1);
-    u = CD/CL*WCC1(i)/T;
+    u = CD/CL*WCC1(i)/thrust(MCC1, TSL_Mil, hCC1(i), 1);
     WCC1(i+1) = WCC1(i)*exp(-TSFC(MCC1, hCC1(i), 1)/VCruise*(hCC1(i+1) - hCC1(i))/...
         (1 - u));
 end
@@ -116,19 +113,32 @@ beta(6) = W(6)/W(1);
 %6.Acclerating climb
 %Assumes military power
 n = 10;
+<<<<<<< HEAD
 hAC2a = linspace(h4, h6, n);
 WAC2a = zeros(1,n);
 WAC2a(1) = W(6);
+=======
+VAC2 = linspace(VCruise, VCombat, n);
+hAC2 = linspace(h4, h6, n);
+WAC2 = zeros(1,n);
+WAC2(1) = W(6);
+>>>>>>> parent of 9a82547... Debug effort on mission analysis
 
 for i = 1:n-1
     [~, ~, ~, a] = atmData(hAC2a(i));
     MAC = VCruise/a;
     CL = liftCoeff(WAC2a(i), S, hAC2a(i), VCruise, 1);
     [CD, ~] = dragCoeff(CL, MAC, 1);
+<<<<<<< HEAD
     T = thrust(MAC, TSL_Mil*1.2, hAC2a(i), 1);
     u = CD/CL*WAC2a(i)/T;
     WAC2a(i+1) = WAC2a(i)*exp(-TSFC(MAC, hAC2a(i), 1)/VCruise*...
         (hAC2a(i+1) - hAC2a(i))/(1 - u));
+=======
+    u = CD/CL*WAC2(i)/thrust(MAC, TSL_Mil, hAC2(i), 1);
+    WAC2(i+1) = WAC2(i)*exp(-TSFC(MAC, hAC2(i), 1)/VAC1(i)*...
+        ((hAC2(i+1) - hAC2(i)) + (VAC2(i+1)^2 - VAC2(i)^2)/(2*g))/(1 - u));
+>>>>>>> parent of 9a82547... Debug effort on mission analysis
 end
 
 n = 10;
