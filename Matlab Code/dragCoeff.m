@@ -1,7 +1,7 @@
-function [ CD, CD0K1 ] = dragCoeff( CL, M, ver)
+function [ CD, CD0K1, CD0divK1 ] = dragCoeff(CL, M, ver)
 %Calculates drag
 %Current: ver = 1
-%Future:  ver = 0;
+%Future:  ver = 2;
 
 % global AR
 % global e
@@ -63,6 +63,8 @@ end
 CD = K1*CL^2 + CD_0;
 
 CD0K1 = CD_0*K1;
+
+CD0divK1 = CD_0/K1;
 
 end
 

@@ -1,4 +1,4 @@
-function [WFinal] = missionAnalysisF86L(WTO, S)
+function [WFinal, beta] = missionAnalysisF86L(WTO, S)
 %|1|Pre-takeoff|2|Takeoff acceleration|3|Acclerating climb|4|Cruise climb
 %|5|Loiter|6|Cruise climb|7|Combat|8|Cruise|9|Loiter|10|Landing
 
@@ -39,7 +39,7 @@ qTA = 1/2*rho_ref*VTA.^2;
 MTA = VTA/a_ref;
 
 for i = 2:n
-    [CD, ~] = dragCoeff(CL_Max, MTA(i), 1);
+    [CD, ~, ~] = dragCoeff(CL_Max, MTA(i), 1);
     T = thrust(MTA(i), TSL_Max, 0, 2);
     u = CD*qTA(i)*S/T;
     WTA(i) = WTA(i-1)*exp(-TSFC(MTA(i), 0, 2)/g*(VTA(i)-VTA(i-1))/(1-u));
@@ -64,7 +64,7 @@ for i = 1:n-1
     [~, ~, ~, a] = atmData(hAC1(i));
     MAC = VAC1(i)/a;
     CL = liftCoeff(WAC1(i), S, hAC1(i), VAC1(i), 1);
-    [CD, ~] = dragCoeff(CL, MAC, 1);
+    [CD, ~, ~] = dragCoeff(CL, MAC, 1);
     T = thrust(MAC, TSL_Mil, hAC1(i), 1);
     u = CD/CL*WAC1(i)/T;
     WAC1(i+1) = WAC1(i)*exp(-TSFC(MAC, hAC1(i), 1)/VAC1(i)*...
@@ -84,7 +84,7 @@ for i = 1:n-1
     [~, ~, ~, a] = atmData(hCC1(i));
     MCC1 = VCruise/a;
     CL = liftCoeff(WCC1(i), S, hCC1(i), VCruise, 1);
-    [CD, ~] = dragCoeff(CL, MCC1, 1);
+    [CD, ~, ~] = dragCoeff(CL, MCC1, 1);
     T = thrust(MCC1, TSL_Mil*1.1, hCC1(i), 1);
     u = CD/CL*WCC1(i)/T;
     WCC1(i+1) = WCC1(i)*exp(-TSFC(MCC1, hCC1(i), 1)/VCruise*(hCC1(i+1) - hCC1(i))/...
@@ -104,7 +104,8 @@ dt = 10*60/n;
 
 [~, ~, ~, a] = atmData(hL1);
 ML1 = VCruise/a;
-[~, CD0K1] = dragCoeff(0, ML1, 1);
+CL = liftCoeff( W(5), S, hL1, VCruise, 1 );
+[~, CD0K1] = dragCoeff(CL, ML1, 1);
 
 for i = 1:n
     WL1(i+1) = WL1(i)*exp(-TSFC(ML1, hL1, 4)*sqrt(4*CD0K1)*dt);
@@ -126,7 +127,7 @@ for i = 1:n-1
     [~, ~, ~, a] = atmData(hAC2(i));
     MAC = VAC2(i)/a;
     CL = liftCoeff(WAC2(i), S, hAC2(i), VAC2(i), 1);
-    [CD, ~] = dragCoeff(CL, MAC, 1);
+    [CD, ~, ~] = dragCoeff(CL, MAC, 1);
     T = thrust(MAC, TSL_Mil*1.2, hAC2(i), 1);
     u = CD/CL*WAC2(i)/T;
     WAC2(i+1) = WAC2(i)*exp(-TSFC(MAC, hAC2(i), 1)/VAC2(i)*...
@@ -147,10 +148,10 @@ dt = 5*60/n;
 
 [~, ~, ~, a] = atmData(hCb);
 MCb = VCombat/a;
-[CD, ~] = dragCoeff(0, MCb, 1);
 
 for i = 1:n
     CL = liftCoeff(WCb(i), S, hCb, VCombat, 1);
+    [CD, ~, ~] = dragCoeff(CL, MCb, 1);
     WCb(i+1) = WCb(i)*exp(-TSFC(MCb, hCb, 2)*CD/CL*dt);
 end
 
@@ -158,7 +159,7 @@ W(8) = WCb(end);
 beta(8) = W(8)/W(1);
 
 %8.Cruise
-n = 100;
+n = 10;
 hCr = h8;
 WCr = zeros(1,n+1);
 WCr(1) = W(8);
@@ -167,10 +168,10 @@ dt = 550*6076.115/VCruise/n;
 
 [~, ~, ~, a] = atmData(hCr);
 MCr = VCruise/a;
-[CD, ~] = dragCoeff(0, MCr, 1);
 
 for i = 1:n
     CL = liftCoeff(WCr(i), S, hCr, VCruise, 1);
+    [CD, ~, ~] = dragCoeff(CL, MCr, 1);
     WCr(i+1) = WCr(i)*exp(-TSFC(MCr, hCr, 3)*CD/CL*dt);
 end
 
@@ -188,7 +189,8 @@ dt = 10*60/n;
 
 [~, ~, ~, a] = atmData(hL2);
 ML2 = VCruise/a;
-[~, CD0K1] = dragCoeff(0, ML2, 1);
+CL = liftCoeff( W(9), S, hL2, VCruise, 1 );
+[~, CD0K1] = dragCoeff(CL, ML2, 1);
 
 for i = 1:n
     WL2(i+1) = WL2(i)*exp(-TSFC(ML2, hL2, 4)*sqrt(4*CD0K1)*dt);

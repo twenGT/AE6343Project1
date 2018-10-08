@@ -36,8 +36,8 @@ a_ref = 1116.45;    %ft/s
 g = 32.174;         %ft/s^2
 
 %F-86L Data
-AR = 4.6;
-taper_ratio = 0.6;
+% AR = 4.6;
+% taper_ratio = 0.6;
 
 %MATTINGLY pg.36
 % e = 0.8;
