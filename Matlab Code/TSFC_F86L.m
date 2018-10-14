@@ -1,4 +1,4 @@
-function [tsfc] = TSFC(M, h, scenario)
+function [tsfc] = TSFC_F86L(M, h, scenario)
 %scenario == 1: military
 %scenario == 2: maximum (with after-burner)
 %scenario == 3: subsonic cruise
@@ -9,9 +9,9 @@ global T_ref
 [ T, ~, ~, ~ ] = atmData(h);
 
 if scenario == 1
-    tsfc = (1.1 +  0.3*M)*sqrt(T/T_ref);
+    tsfc = (1.01 + 0.3*M)*sqrt(T/T_ref);
 elseif scenario == 2
-    tsfc = (1.5 + 0.23*M)*sqrt(T/T_ref);
+    tsfc = (2.0 + 0.23*M)*sqrt(T/T_ref);
 elseif scenario == 3
     tsfc = 0.9*sqrt(T/T_ref);
 elseif scenario == 4

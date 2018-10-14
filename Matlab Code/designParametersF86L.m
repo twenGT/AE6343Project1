@@ -19,6 +19,7 @@ global TSL_Mil
 global TSL_Nml
 
 global CL_Max
+global muTO
 
 global VCruise
 global VCombat
@@ -51,8 +52,9 @@ TSL_Mil = 5550; %lbf
 TSL_Nml = 5100; %lbf
 
 %SLIDES, Single slot
-CL_Max = 1.6;
+CL_Max = 1.3;
 %CL_MaxLD = 2;
+muTO = 0.05;
 
 %468 knots
 VCruise = 468*1.688;

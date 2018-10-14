@@ -8,6 +8,7 @@ global CL_Max
 global TSL_Max
 global TSL_Mil
 global a_ref
+global muTO
 
 global VCruise
 global VCombat
@@ -41,12 +42,13 @@ MTA = VTA/a_ref;
 for i = 2:n
     [CD, ~, ~] = dragCoeff(CL_Max, MTA(i), 1);
     T = thrust(MTA(i), TSL_Max, 0, 2);
-    u = CD*qTA(i)*S/T;
-    WTA(i) = WTA(i-1)*exp(-TSFC(MTA(i), 0, 2)/g*(VTA(i)-VTA(i-1))/(1-u));
+    xiTO = CD - muTO*CL_Max;
+    u = (xiTO*qTA(i-1)*S/WTA(i-1)+muTO)*WTA(i-1)/T;
+    WTA(i) = WTA(i-1)*exp(-TSFC_F86L(MTA(i), 0, 2)/g*(VTA(i)-VTA(i-1))/(1-u));
 end
 
 %Takeoff rotation, t_rot = 2s
-WTA(end) = WTA(end-1)*(1 - TSFC(MTA(end), 0, 2)*...
+WTA(end) = WTA(end-1)*(1 - TSFC_F86L(MTA(end), 0, 2)*...
     thrust(MTA(end), TSL_Max, 0, 2)/WTA(end-1)*2);
 
 W(3) = WTA(end);
@@ -67,7 +69,7 @@ for i = 1:n-1
     [CD, ~, ~] = dragCoeff(CL, MAC, 1);
     T = thrust(MAC, TSL_Mil, hAC1(i), 1);
     u = CD/CL*WAC1(i)/T;
-    WAC1(i+1) = WAC1(i)*exp(-TSFC(MAC, hAC1(i), 1)/VAC1(i)*...
+    WAC1(i+1) = WAC1(i)*exp(-TSFC_F86L(MAC, hAC1(i), 1)/VAC1(i)*...
         ((hAC1(i+1) - hAC1(i)) + (VAC1(i+1)^2 - VAC1(i)^2)/(2*g))/(1 - u));
 end
 
@@ -75,23 +77,41 @@ W(4) = WAC1(end);
 beta(4) = W(4)/W(1);
 
 %4.Cruise climb
+%altitude change
 n = 10;
-hCC1 = linspace(h3, h4, n);
-WCC1 = zeros(1,n);
-WCC1(1) = W(4);
+hCC1a = linspace(h3, h4, n);
+WCC1a = zeros(1,n);
+WCC1a(1) = W(4);
 
 for i = 1:n-1
-    [~, ~, ~, a] = atmData(hCC1(i));
-    MCC1 = VCruise/a;
-    CL = liftCoeff(WCC1(i), S, hCC1(i), VCruise, 1);
-    [CD, ~, ~] = dragCoeff(CL, MCC1, 1);
-    T = thrust(MCC1, TSL_Mil*1.1, hCC1(i), 1);
-    u = CD/CL*WCC1(i)/T;
-    WCC1(i+1) = WCC1(i)*exp(-TSFC(MCC1, hCC1(i), 1)/VCruise*(hCC1(i+1) - hCC1(i))/...
+    [~, ~, ~, a] = atmData(hCC1a(i));
+    MCC1a = VCruise/a;
+    CL = liftCoeff(WCC1a(i), S, hCC1a(i), VCruise, 1);
+    [CD, ~, ~] = dragCoeff(CL, MCC1a, 1);
+    T = thrust(MCC1a, TSL_Mil*1.1, hCC1a(i), 1);
+    u = CD/CL*WCC1a(i)/T;
+    WCC1a(i+1) = WCC1a(i)*exp(-TSFC_F86L(MCC1a, hCC1a(i), 1)/VCruise*(hCC1a(i+1) - hCC1a(i))/...
         (1 - u));
 end
 
-W(5) = WCC1(end);
+%cruise
+n = 10;
+hCC1b = h4;
+WCC1b = zeros(1,n+1);
+WCC1b(1) = WCC1a(end);
+%550 nautical miles
+dt = 550*6076.115/VCruise/n;
+
+[~, ~, ~, a] = atmData(hCC1b);
+MCC1b = VCruise/a;
+
+for i = 1:n
+    CL = liftCoeff(WCC1b(i), S, hCC1b, VCruise, 1);
+    [CD, ~, ~] = dragCoeff(CL, MCC1b, 1);
+    WCC1b(i+1) = WCC1b(i)*exp(-TSFC_F86L(MCC1b, hCC1b, 3)*CD/CL*dt);
+end
+
+W(5) = WCC1b(end);
 beta(5) = W(5)/W(1);
 
 %5.Loiter
@@ -108,7 +128,7 @@ CL = liftCoeff( W(5), S, hL1, VCruise, 1 );
 [~, CD0K1] = dragCoeff(CL, ML1, 1);
 
 for i = 1:n
-    WL1(i+1) = WL1(i)*exp(-TSFC(ML1, hL1, 4)*sqrt(4*CD0K1)*dt);
+    WL1(i+1) = WL1(i)*exp(-TSFC_F86L(ML1, hL1, 4)*sqrt(4*CD0K1)*dt);
 end
 
 W(6) = WL1(end);
@@ -130,7 +150,7 @@ for i = 1:n-1
     [CD, ~, ~] = dragCoeff(CL, MAC, 1);
     T = thrust(MAC, TSL_Mil*1.2, hAC2(i), 1);
     u = CD/CL*WAC2(i)/T;
-    WAC2(i+1) = WAC2(i)*exp(-TSFC(MAC, hAC2(i), 1)/VAC2(i)*...
+    WAC2(i+1) = WAC2(i)*exp(-TSFC_F86L(MAC, hAC2(i), 1)/VAC2(i)*...
         (hAC2(i+1) - hAC2(i))/(1 - u));
 %        ((hAC2(i+1) - hAC2(i)) + (VAC2(i+1)^2 - VAC2(i)^2)/(2*g))/(1 - u));
 end
@@ -152,7 +172,7 @@ MCb = VCombat/a;
 for i = 1:n
     CL = liftCoeff(WCb(i), S, hCb, VCombat, 1);
     [CD, ~, ~] = dragCoeff(CL, MCb, 1);
-    WCb(i+1) = WCb(i)*exp(-TSFC(MCb, hCb, 2)*CD/CL*dt);
+    WCb(i+1) = WCb(i)*exp(-TSFC_F86L(MCb, hCb, 2)*CD/CL*dt);
 end
 
 W(8) = WCb(end);
@@ -172,7 +192,7 @@ MCr = VCruise/a;
 for i = 1:n
     CL = liftCoeff(WCr(i), S, hCr, VCruise, 1);
     [CD, ~, ~] = dragCoeff(CL, MCr, 1);
-    WCr(i+1) = WCr(i)*exp(-TSFC(MCr, hCr, 3)*CD/CL*dt);
+    WCr(i+1) = WCr(i)*exp(-TSFC_F86L(MCr, hCr, 3)*CD/CL*dt);
 end
 
 W(9) = WCr(end);
@@ -193,7 +213,7 @@ CL = liftCoeff( W(9), S, hL2, VCruise, 1 );
 [~, CD0K1] = dragCoeff(CL, ML2, 1);
 
 for i = 1:n
-    WL2(i+1) = WL2(i)*exp(-TSFC(ML2, hL2, 4)*sqrt(4*CD0K1)*dt);
+    WL2(i+1) = WL2(i)*exp(-TSFC_F86L(ML2, hL2, 4)*sqrt(4*CD0K1)*dt);
 end
 
 W(10) = WL2(end);

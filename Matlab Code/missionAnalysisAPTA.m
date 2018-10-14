@@ -9,7 +9,6 @@ function [ WFinal, beta ] = missionAnalysisAPTA( WTO, S )
 global rho_ref
 global g
 global CL_Max
-global TSL_Max
 global TSL_Mil
 global a_ref
 global BCM
