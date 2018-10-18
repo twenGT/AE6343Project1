@@ -28,6 +28,7 @@ global h3
 global h4
 global h6
 global h8
+global h9
 
 
 rho_ref = 0.002377; %slugs/ft^3
@@ -59,13 +60,14 @@ muTO = 0.05;
 %468 knots
 VCruise = 468*1.688;
 %536 knots
-VCombat = 536*1.688;
+VCombat = 500*1.688;
 
 
 h3 = 35400;     %ft
 h4 = 38700;     %ft
 h6 = 47550;     %ft
 h8 = 37000;     %ft
+h9 = 35000;     %ft
 
 
 end
