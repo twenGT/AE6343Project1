@@ -20,6 +20,7 @@ global TSL_Nml
 global BCM
 
 global CL_Max
+global muTO
 
 global VCruise
 global VDash
@@ -42,8 +43,7 @@ WwarmUp = 25*30;%lbf
 WrunUp  = 85;   %lbf
 WpreTakeOff = Wstart + WwarmUp + WrunUp;
 
-
-TSL_Max = 10000;%lbf
+TSL_Max = 9000;%lbf
 TSL_Mil = 7500; %lbf
 TSL_Nml = 6000; %lbf
 
@@ -51,7 +51,8 @@ TSL_Nml = 6000; %lbf
 % e = 0.8;
 
 %SLIDES, improved aero
-CL_Max = 2.0;
+CL_Max = 1.4;
+muTO = 0.05;
 
 %480 knots
 VCruise = 480*1.688;
@@ -59,7 +60,5 @@ VCruise = 480*1.688;
 VDash = 622*1.688;
 
 BCM = 0.8;
-
-
 
 end

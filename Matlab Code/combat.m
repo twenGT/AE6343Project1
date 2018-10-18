@@ -1,4 +1,4 @@
-function [ betaf, W ] = combat( betai, WTO, S, h, V, t, loadFactor)
+function [ betaf, W ] = combat( betai, WTO, S, h, V, t, loadFactor, type )
 %Duration t in minutes
 
 n = 10;
@@ -12,8 +12,8 @@ MCb = V/a;
 
 for i = 1:n
     CL = liftCoeff(WCb(i), S, hCb, V, loadFactor);
-    [CD, ~, ~] = dragCoeff(CL, MCb, 1);
-    WCb(i+1) = WCb(i)*exp(-TSFC_F86L(MCb, hCb, 2)*CD/CL*dt);
+    [CD, ~, ~] = dragCoeff(CL, MCb, type);
+    WCb(i+1) = WCb(i)*exp(-TSFC(MCb, hCb, 2, type)*CD/CL*dt);
 end
 
 W = WCb(end);

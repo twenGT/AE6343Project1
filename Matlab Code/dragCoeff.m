@@ -1,4 +1,4 @@
-function [ CD, CD0K1, CD0divK1 ] = dragCoeff(CL, M, ver)
+function [ CD, CD0K1, CD0divK1 ] = dragCoeff(CL, M, type)
 %Calculates drag
 %Current: ver = 1
 %Future:  ver = 2;
@@ -14,7 +14,7 @@ function [ CD, CD0K1, CD0divK1 ] = dragCoeff(CL, M, ver)
 
 %MATTINGLY pg.37 Fig.2.10
 %Current
-if (ver == 1)
+if (type == 1)
     if M < 0.8
         K1 = 0.14;
     elseif (0.8 <= M) && (M < 1.2)
@@ -33,7 +33,7 @@ end
 
 %MATTINGLY pg.37 Fig.2.11
 %Current
-if (ver == 1)
+if (type == 1)
     if M < 0.8
         CD_0 = 0.018;
     elseif (0.8 <= M) && (M < 1.2)

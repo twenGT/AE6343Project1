@@ -1,4 +1,4 @@
-function [ betaf, W ] = accelClimb( betai, WTO, S, Vi, Vf, hi, hf, mode )
+function [ betaf, W ] = accelClimb( betai, WTO, S, Vi, Vf, hi, hf, mode, type )
 
 global TSL_Mil
 global TSL_Max
@@ -21,10 +21,10 @@ for i = 1:n-1
     [~, ~, ~, a] = atmData(hAC(i));
     MAC = VAC(i)/a;
     CL = liftCoeff(WAC(i), S, hAC(i), VAC(i), 1);
-    [CD, ~, ~] = dragCoeff(CL, MAC, 1);
+    [CD, ~, ~] = dragCoeff(CL, MAC, type);
     T = thrust(MAC, TSL, hAC(i), 1);
     u = CD/CL*WAC(i)/T;
-    WAC(i+1) = WAC(i)*exp(-TSFC_F86L(MAC, hAC(i), 1)/VAC(i)*...
+    WAC(i+1) = WAC(i)*exp(-TSFC(MAC, hAC(i), mode, type)/VAC(i)*...
         ((hAC(i+1) - hAC(i)) + (VAC(i+1)^2 - VAC(i)^2)/(2*g))/(1 - u));
 end
 
