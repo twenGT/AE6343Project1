@@ -15,6 +15,8 @@ global WTO2S
 
 totalLeg = 10;
 
+combatR = 150;
+
 beta = zeros(1,totalLeg);
 W = zeros(1,totalLeg);
 TSL2WTO = cell(totalLeg,2);
@@ -46,8 +48,8 @@ i = i + 1;
 %for 550 nm at h4
 
 i = i + 1;
-[betatemp, ~, TSL2WTO{i,1}, TSL2WTO{i,2}] = cruiseClimb(beta(i), WTO, S, h3, h4, 550, type);
-[beta(i+1), W(i+1), ~, ~] = cruise(betatemp, WTO, S, h4, 550, VCruise, type);
+[betatemp, ~, TSL2WTO{i,1}, TSL2WTO{i,2}] = cruiseClimb(beta(i), WTO, S, h3, h4, combatR, type);
+[beta(i+1), W(i+1), ~, ~] = cruise(betatemp, WTO, S, h4, combatR, VCruise, type);
 
 %5.Loiter
 %for 10 min at h4
@@ -71,7 +73,7 @@ i = i + 1;
 %for 550 nm at h8
 
 i = i + 1;
-[beta(i+1), W(i+1), TSL2WTO{i,1}, TSL2WTO{i,2}] = cruise(beta(i), WTO, S, h8, 550, VCruise, type);
+[beta(i+1), W(i+1), TSL2WTO{i,1}, TSL2WTO{i,2}] = cruise(beta(i), WTO, S, h8, combatR, VCruise, type);
 
 %9.Loiter
 %for 10 min at h9
@@ -88,25 +90,23 @@ WTO2SLD = landingConstraint(beta(i+1), CL_noHL);
 WFinal = W(end);
 
 % plot
-graphLegend = {};
-
-figure
-for i = 2:totalLeg-1
-    plot(WTO2S,TSL2WTO{i,1},'lineWidth',2);
-    hold on
-    graphLegend{i-1} = [num2str(i), '. ', TSL2WTO{i,2}];
-end
-line([WTO2SLD, WTO2SLD],[0, 2],'lineWidth',2);
-plot(18500/313.4,7650/18500, 'ro');
-
-graphLegend{i} = [num2str(i+1), '. ', 'Landing'];
-
-legend(graphLegend);
-
-grid on;
-xlabel('W_{TO}/S');
-ylabel('T_{SL}/W_{TO}');
-axis([0 150 0 1.5]);
+% figure
+% for i = 2:totalLeg-1
+%     plot(WTO2S,TSL2WTO{i,1},'lineWidth',2);
+%     hold on
+%     graphLegend{i-1} = [num2str(i), '. ', TSL2WTO{i,2}];
+% end
+% line([WTO2SLD, WTO2SLD],[0, 2],'lineWidth',2);
+% plot(18500/313.4,7650/18500, 'ro');
+% 
+% graphLegend{i} = [num2str(i+1), '. ', 'Landing'];
+% 
+% legend(graphLegend);
+% 
+% grid on;
+% xlabel('W_{TO}/S');
+% ylabel('T_{SL}/W_{TO}');
+% axis([0 140 0 1.5]);
 
 end
 

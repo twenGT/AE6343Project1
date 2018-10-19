@@ -71,7 +71,7 @@ i = i + 1;
 %for 550 nm at h8
 
 i = i + 1;
-[beta(i+1), W(i+1), TSL2WTO{i,1}, TSL2WTO{i,2}] = cruise(beta(i), WTO, S, h8, 550, VCruise, type);
+[beta(i+1), W(i+1), TSL2WTO{i,1}, TSL2WTO{i,2}] = cruise(beta(i), WTO, S, h8, 300, VCruise, type);
 
 %9.Loiter
 %for 10 min at h9
@@ -87,9 +87,7 @@ WTO2SLD = landingConstraint(beta(i+1), CL_noHL);
 
 WFinal = W(end);
 
-
 % plot
-
 graphLegend = {};
 
 figure
@@ -108,7 +106,7 @@ legend(graphLegend);
 grid on;
 xlabel('W_{TO}/S');
 ylabel('T_{SL}/W_{TO}');
-axis([0 150 0 1.5]);
+axis([0 140 0 1.5]);
 
 end
 
