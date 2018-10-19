@@ -1,4 +1,4 @@
-function [WFinal, beta, TSL2WTO, WTO2SLD] = F86L(WTO, S)
+function [WFinal, beta, TSL2WTO, WTO2SLD] = F86L(WTO, S, plotOn)
 %|1|Pre-takeoff|2|Takeoff acceleration|3|Acclerating climb|4|Cruise climb
 %|5|Loiter|6|Cruise climb|7|Combat|8|Cruise|9|Loiter|10|Landing
 
@@ -15,7 +15,7 @@ global WTO2S
 
 totalLeg = 10;
 
-combatR = 150;
+combatR = 450;
 
 beta = zeros(1,totalLeg);
 W = zeros(1,totalLeg);
@@ -90,23 +90,32 @@ WTO2SLD = landingConstraint(beta(i+1), CL_noHL);
 WFinal = W(end);
 
 % plot
-% figure
-% for i = 2:totalLeg-1
-%     plot(WTO2S,TSL2WTO{i,1},'lineWidth',2);
-%     hold on
-%     graphLegend{i-1} = [num2str(i), '. ', TSL2WTO{i,2}];
-% end
-% line([WTO2SLD, WTO2SLD],[0, 2],'lineWidth',2);
-% plot(18500/313.4,7650/18500, 'ro');
-% 
-% graphLegend{i} = [num2str(i+1), '. ', 'Landing'];
-% 
-% legend(graphLegend);
-% 
-% grid on;
-% xlabel('W_{TO}/S');
-% ylabel('T_{SL}/W_{TO}');
-% axis([0 140 0 1.5]);
+
+%     if abs(deltaWF) < 0.1
+%         plotOn = 1;
+%     else
+%         plotOn = 0;
+%     end
+
+if plotOn == 1
+    figure
+    for i = 2:totalLeg-1
+        plot(WTO2S,TSL2WTO{i,1},'lineWidth',2);
+        hold on
+        graphLegend{i-1} = [num2str(i), '. ', TSL2WTO{i,2}];
+    end
+    line([WTO2SLD, WTO2SLD],[0, 2],'lineWidth',2);
+    plot(18500/313.4,7650/18500, 'ro');
+    
+    graphLegend{i} = [num2str(i+1), '. ', 'Landing'];
+    
+    legend(graphLegend);
+    
+    grid on;
+    xlabel('W_{TO}/S');
+    ylabel('T_{SL}/W_{TO}');
+    axis([0 140 0 1.5]);
+end
 
 end
 
