@@ -1,4 +1,4 @@
-function [T] = thrust(M, TSL, h, scenario)
+function [T, alpha] = thrust(M, TSL, h, scenario)
 %scenario == 1: military
 %scenario == 2: maximum (with after-burner)
 

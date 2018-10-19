@@ -1,4 +1,4 @@
-function [ CD, CD0K1, CD0divK1 ] = dragCoeff(CL, M, type)
+function [ CD, K1, CD0 ] = dragCoeff(CL, M, type)
 %Calculates drag
 %Current: ver = 1
 %Future:  ver = 2;
@@ -35,20 +35,20 @@ end
 %Current
 if (type == 1)
     if M < 0.8
-        CD_0 = 0.018;
+        CD0 = 0.018;
     elseif (0.8 <= M) && (M < 1.2)
-        CD_0 = 0.055  *M - 0.026;
+        CD0 = 0.055  *M - 0.026;
     else
-        CD_0 = -0.0025*M + 0.043;
+        CD0 = -0.0025*M + 0.043;
     end
 %Future
 else    
     if M < 0.8
-        CD_0 = 0.014;
+        CD0 = 0.014;
     elseif (0.8 <= M) && (M < 1.2)
-        CD_0 = 0.035*M - 0.014;
+        CD0 = 0.035*M - 0.014;
     else
-        CD_0 = 0.028;
+        CD0 = 0.028;
     end
 end
 %K2 = -2*Kpp*CL_min
@@ -60,11 +60,7 @@ end
 %CD = K1*CL^2 + K2*CL + CD_0
 %but assumes K2 = 0
 
-CD = K1*CL^2 + CD_0;
-
-CD0K1 = CD_0*K1;
-
-CD0divK1 = CD_0/K1;
+CD = K1*CL^2 + CD0;
 
 end
 

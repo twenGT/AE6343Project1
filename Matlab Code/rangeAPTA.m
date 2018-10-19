@@ -87,12 +87,11 @@ W(3) = WCC1(end);
 VCruise = BCM*a;
 
 CL = liftCoeff(W(3), S, h2b, VCruise, 1);
-[~, CD0K1] = dragCoeff(CL, BCM, 1);
+[~, K1, CD0] = dragCoeff(CL, BCM, 1);
 
-t = -1/TSFC_APTA(BCM, h2b, 3)*(sqrt(3)/(4*sqrt(CD0K1)))*log(Wfinal/WTO);
+t = -1/TSFC_APTA(BCM, h2b, 3)*(sqrt(3)/(4*sqrt(CD0*K1)))*log(Wfinal/WTO);
 
 range = t*VCruise;
-
 
 end
 
