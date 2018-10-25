@@ -1,7 +1,7 @@
 function [ CD, K1, CD0 ] = dragCoeff(CL, M, type)
 %Calculates drag
-%Current: ver = 1
-%Future:  ver = 2;
+%Current: type = 1
+%Future:  type = 2
 
 % global AR
 % global e

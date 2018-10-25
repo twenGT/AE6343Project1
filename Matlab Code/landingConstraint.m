@@ -15,7 +15,7 @@ tfr = 3;
 %a = (beta/(rho_ref*g*E_L))*log(1 + E_L/(mu_b+(T*alpha/(beta*(WTO)))*(CL_Max/k_TD^2)));
 a = (beta/(rho_ref*g*EL))*log(1 + EL/(mu_b*(CL/k_TD^2)));
 b = tfr*k_TD*sqrt(2*beta/(rho_ref*CL));
-c = 2000; %Landing distance
+c = 3000; %Landing distance
 
 WTO2S = ((-b + sqrt(b^2 + 4*a*c))/(2*a))^2;
 

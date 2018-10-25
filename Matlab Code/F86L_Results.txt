@@ -1,0 +1,31 @@
+Converged Results for Benchmark Aircraft (F-86L Sabre)
+
+Design Point
+
+TOGW(WTO): 19489.2 lbs
+TSL/WTO  : 0.469 
+WTO/S    : 63.10 
+
+Mission Analysis
+
+   Mission Phase    |   beta
+--------------------+----------
+ 0. Initial         |  1.0000
+ 1. Pre Take Off    |  1.0000
+ 2. Take Off Accel. |  0.9935
+ 3. Accel. Climb    |  0.9186
+ 4. Cruise Climb    |  0.8311
+ 5. Loiter          |  0.8215
+ 6. Cruise Climb    |  0.8122
+ 7. Combat          |  0.7958
+ 8. Cruise          |  0.7182
+ 9. Loiter          |  0.7099
+10. Landing         |  0.7099
+
+Bechmark Aircraft Comparison
+
+   Parameter   |  Actual Data  | Converged Result |  % Diff. 
+---------------+---------------+------------------+------------
+      WTO      |   18484lb     |    19489.2lb     |    5.4%
+    TSL/WTO    |    0.4247     |     0.4689       |   10.4%
+     WTO/S     |  59.0lb/ft^2  |   63.1lb/ft^2    |    6.9%
