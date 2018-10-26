@@ -93,7 +93,7 @@ i = i + 1;
 WTO2SLD = landingConstraint(beta(i+3), CL_noHL);
 
 i = i + 1;
-%14. Loiter (i = 12)
+%14. Maximum Endurance (i = 12)
 [~, ~, ~, a14] = atmData(h14);
 V14 = BCM*a14;
 [ TSL2WTO{i-1,1}, TSL2WTO{i-1,2} ] = loiterCA( beta(i+3), h14, V14, type );

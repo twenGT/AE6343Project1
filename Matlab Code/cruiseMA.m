@@ -20,4 +20,3 @@ betaf = betaLeg(end);
 leg = 'Cruise';
 
 end
-

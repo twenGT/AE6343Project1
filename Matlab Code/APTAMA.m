@@ -104,10 +104,6 @@ i = i + 1;
 beta(i+1) = beta(i);
 
 i = i + 1;
-%14. Reserve (Loiter)
-[~, ~, rho14, ~] = atmData(h14);
-[ ~, K1, CD0 ] = dragCoeff(0, 0.6, type);
-V14 = sqrt(beta(i)*WTO2S*2/rho14*sqrt(K1/CD0));
-[ beta(i+1), ~ ] = loiterMA( beta(i), WTO2S, V14, h14, t14, type);
-
+%14. Reserve (Maximum Endurance)
+[ beta(i+1), ~ ] = maxEnduroMA( beta(i), WTO2S, h14, t14, type );
 end
