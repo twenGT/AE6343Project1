@@ -32,16 +32,19 @@ V3a = sqrt(2/rho3a*WTO2S*sqrt(3*K1/CD0));
 
 
 h3b = BCA(betatemp, WTO2S);
+[~, ~, rho3a, ~] = atmData(h3a);
+V3a = sqrt(2/rho3a*WTO2S*sqrt(3*K1/CD0));
+
+h3b = BCA(betatemp, WTO2S);
 [~, ~, rho3b, a3b] = atmData(h3b);
-V3b = sqrt(2/rho3b*WTO2S*sqrt(3*K1/CD0));
+V3b = BCM*a3b;
 [ beta(i+1), ~ ] = cruiseClimbMA( betatemp, TSL2WTO, WTO2S, V3b, h3a, h3b, type );
 
 %4. Max range cruise
 
 h4 = h3b;
-rho4 = rho3b;
-V4 = V3b;
-a4 = a3b;
+
+
 M4 = V4/a4;
 Wini = beta(end)*WTO;
 Wend = betaFinal*WTO;

@@ -34,6 +34,6 @@ Sustained g at 15,000 ft MSL  |     8     |     9     |    3.0
 Ceiling                       |  40000ft  |  50000ft  |  50100ft
 Minimum Runway Length         |   8000ft  |   6000ft  |   3000ft
 Payload (Expendable)          |    500lb  |   1000lb  |    750lb
-Range (Unrefueled)            |   1000nm  |   1500nm  |   1459nm
+Range (Unrefueled)            |   1000nm  |   1500nm  |   1734nm
 Cruise Mach Number            |    0.7    |    0.8    |    0.8
 Dash Mach Number              |    0.95   |    1.2    |    1.1
