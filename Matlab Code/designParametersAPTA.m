@@ -39,6 +39,7 @@ global t14
 global h5
 global h6
 global h10
+global h14
 
 global nCombat
 
@@ -83,9 +84,10 @@ t6  = 20;   %min
 t10 = 20;   %min
 t14 = 30;   %min
 
-h5  = 20000;     %ft
-h6  = 20000;     %ft
-h10 = 15000;     %ft
+h5  = 20000;    %ft
+h6  = 20000;    %ft
+h10 = 15000;    %ft
+h14 = 10000;    %ft
 
 %300 knots
 IAS5 = 300*1.688;

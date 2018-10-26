@@ -18,6 +18,7 @@ global t14
 global h5
 global h6
 global h10
+global h14
 global nCombat
 global type
 global WpreTakeOff
@@ -104,7 +105,6 @@ beta(i+1) = beta(i);
 
 i = i + 1;
 %14. Reserve (Loiter)
-h14 = BCA(beta(i), WTO2S);
 [~, ~, rho14, ~] = atmData(h14);
 [ ~, K1, CD0 ] = dragCoeff(0, 0.6, type);
 V14 = sqrt(beta(i)*WTO2S*2/rho14*sqrt(K1/CD0));

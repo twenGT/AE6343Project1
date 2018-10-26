@@ -24,7 +24,7 @@ elseif type == 2
     
     fileID = fopen('APTA_Results.txt','w');
     fprintf(fileID, 'Converged Results for Advanced Pilot Training Aircraft\n\n');
-    betaCell = cell(numel(beta - 2),2);
+    betaCell = cell(numel(beta - 1),2);
     betaCell{1,1}  = ' 0. Initial         |  ';
     betaCell{2,1}  = ' 1. Pre Take Off    |  ';
     betaCell{3,1}  = ' 2. Take Off Accel. |  ';
@@ -39,6 +39,7 @@ elseif type == 2
     betaCell{12,1} = '11. Accel. Climb    |  ';
     betaCell{13,1} = '12. Cruise          |  ';
     betaCell{14,1} = '13. Landing         |  ';
+    betaCell{15,1} = '14. Reserve         |  ';
 end
 
 fprintf(fileID, 'Design Point\n\n');
@@ -65,7 +66,7 @@ if type == 1
     fprintf(fileID, '     WTO/S     |  59.0lb/ft^2  |   %.1flb/ft^2    |    %.1f%%\n',WTO2S_OPT, (WTO2S_OPT-59)/59*100 );
 
 elseif type == 2
-    for i = 1:rowNum - 2
+    for i = 1:rowNum - 1
         betaCell{i,2} = beta(i);
         fprintf(fileID, '%s', betaCell{i,1});
         fprintf(fileID, '%.4f\n', betaCell{i,2});
