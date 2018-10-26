@@ -27,7 +27,7 @@ while abs(dWTO) > 1E-1
         WTO(j) = WTOGuess;
     end
     
-    while abs(dbeta) > 1E-3
+    while abs(dbeta) > 1E-5
         if i == 1
             betaIter(i,:) = beta;
             WTO2S_OPT = 85;

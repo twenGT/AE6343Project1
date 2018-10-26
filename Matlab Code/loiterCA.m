@@ -1,5 +1,4 @@
 function [ TSL2WTO, leg ] = loiterCA( beta, h, V, type)
-%Loiter time t in minutes
 
 global WTO2S
 

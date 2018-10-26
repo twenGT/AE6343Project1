@@ -24,8 +24,8 @@ totalConstraints = numel(beta)-3;
 %no landing
 TSL2WTO = cell(totalConstraints-1,2);
 
-i = 1;
 %2. Take off
+i = 1;
 [ ~, TSL2WTO{i,1}, TSL2WTO{i,2} ] = takeOffCA( beta(i+2) );
 
 i = i + 1;
@@ -87,22 +87,21 @@ h12 = BCA(beta(i+3), WTO2S_OPT);
 V12 = BCM*a12;
 [ TSL2WTO{i,1}, TSL2WTO{i,2} ] = cruiseCA( beta(i+3), h12, V12, type );
 
-i = i + 1;
 %13. Landing (i = 11)
-WTO2SLD = landingConstraint(beta(i+3), CL_noHL);
+WTO2SLD = landingConstraint(beta(i+4), CL_noHL);
 
 i = i + 1;
 %14. Loiter (i = 12)
-h14 = BCA(beta(i+3), WTO2S_OPT);
+h14 = BCA(beta(i+4), WTO2S_OPT);
 [~, ~, ~, a14] = atmData(h14);
 V14 = BCM*a14;
-[ TSL2WTO{i-1,1}, TSL2WTO{i-1,2} ] = loiterCA( beta(i+3), h14, V14, type );
+[ TSL2WTO{i,1}, TSL2WTO{i,2} ] = loiterCA( beta(i+4), h14, V14, type );
 
 i = i + 1;
 %15. Max speed at sea level (i = 13)
 h15 = 200;
 [~, ~, ~, a15] = atmData(h15);
 V15 = MDash*a15;
-[ TSL2WTO{i-1,1}, TSL2WTO{i-1,2} ] = maxSpeedCA( beta(i+3), 200, V15, type );
+[ TSL2WTO{i,1}, TSL2WTO{i,2} ] = maxSpeedCA( beta(i+4), 200, V15, type );
 
 end

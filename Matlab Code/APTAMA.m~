@@ -27,8 +27,9 @@ beta = zeros(1,totalLeg+1);
 i = 1;
 beta(i) = 1;
 
+i = i + 1;
 %1.Pre-takeoff
-beta(i+1) = 1 - WpreTakeOff/WTO;
+beta(i) = 1 - WpreTakeOff/WTO;
 
 i = i + 1;
 %2. Take off acceleration
@@ -102,8 +103,8 @@ i = i + 1;
 %13. Landing
 beta(i+1) = beta(i);
 
-i = i + 1;
 %14. Reserve (Loiter)
+i = i + 1;
 h14 = BCA(beta(i), WTO2S);
 [~, ~, rho14, ~] = atmData(h14);
 [ ~, K1, CD0 ] = dragCoeff(0, 0.6, type);
@@ -111,3 +112,4 @@ V14 = sqrt(beta(i)*WTO2S*2/rho14*sqrt(K1/CD0));
 [ beta(i+1), ~ ] = loiterMA( beta(i), WTO2S, V14, h14, t14, type);
 
 end
+
