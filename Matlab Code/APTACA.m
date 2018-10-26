@@ -96,7 +96,7 @@ i = i + 1;
 %14. Maximum Endurance (i = 12)
 [~, ~, ~, a14] = atmData(h14);
 V14 = BCM*a14;
-[ TSL2WTO{i-1,1}, TSL2WTO{i-1,2} ] = loiterCA( beta(i+3), h14, V14, type );
+[ TSL2WTO{i-1,1}, TSL2WTO{i-1,2} ] = cruiseCA( beta(i+3), h14, V14, type );
 
 i = i + 1;
 %15. Max speed at sea level (i = 13)

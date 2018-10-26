@@ -1,4 +1,4 @@
-function [ TSL2WTO, leg ] = loiterCA( beta, h, V, type)
+function [ TSL2WTO, leg ] = loiterCA( beta, h, V, type )
 
 global WTO2S
 
