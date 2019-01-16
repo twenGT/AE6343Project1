@@ -1,6 +1,5 @@
 function [ betaf, leg ] = cruiseMA( betai, WTO2S, V, h, range, type )
 
-
 n = 10;
 betaLeg = zeros(1,n+1);
 betaLeg(1) = betai;

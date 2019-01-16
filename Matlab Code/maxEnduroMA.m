@@ -1,6 +1,5 @@
 function [ betaf, leg ] = maxEnduroMA( betai, WTO2S, h, t, type )
 
-
 n = 10;
 betaLeg = zeros(1,n+1);
 betaLeg(1) = betai;

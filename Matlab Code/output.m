@@ -43,9 +43,13 @@ elseif type == 2
 end
 
 fprintf(fileID, 'Design Point\n\n');
-fprintf(fileID, 'TOGW(WTO): %.1f lbs\n', WTO);
 fprintf(fileID, 'TSL/WTO  : %.3f \n', TSL2WTO_OPT);
-fprintf(fileID, 'WTO/S    : %.2f \n\n', WTO2S_OPT);
+fprintf(fileID, 'WTO/S    : %.2f lb/ft^2 \n\n', WTO2S_OPT);
+fprintf(fileID, 'Key Parameters\n\n');
+fprintf(fileID, 'TOGW(WTO): %.1f lb\n', WTO);
+fprintf(fileID, 'TSL      : %.1f lbf\n', WTO*TSL2WTO_OPT);
+fprintf(fileID, 'S        : %.1f ft^2\n\n', WTO/WTO2S_OPT);
+
 fprintf(fileID, 'Mission Analysis\n\n');
 fprintf(fileID, '   Mission Phase    |   beta\n');
 fprintf(fileID, '--------------------+----------\n');
@@ -58,7 +62,7 @@ if type == 1
         fprintf(fileID, '%s', betaCell{i,1});
         fprintf(fileID, '%.4f\n', betaCell{i,2});
     end
-    fprintf(fileID, '\nBechmark Aircraft Comparison\n\n');
+    fprintf(fileID, '\nBenchmark Aircraft Comparison\n\n');
     fprintf(fileID, '   Parameter   |  Actual Data  | Converged Result |  %% Diff. \n');
     fprintf(fileID, '---------------+---------------+------------------+------------\n');
     fprintf(fileID, '      WTO      |   18484lb     |    %.1flb     |    %.1f%%\n',WTO, (WTO-18484)/18484*100 );

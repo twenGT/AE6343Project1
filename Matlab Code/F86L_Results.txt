@@ -2,9 +2,14 @@ Converged Results for Benchmark Aircraft (F-86L Sabre)
 
 Design Point
 
-TOGW(WTO): 19489.2 lbs
 TSL/WTO  : 0.469 
-WTO/S    : 63.10 
+WTO/S    : 63.10 lb/ft^2 
+
+Key Parameters
+
+TOGW(WTO): 19489.2 lb
+TSL      : 9138.8 lbf
+S        : 308.9 ft^2
 
 Mission Analysis
 
@@ -22,7 +27,7 @@ Mission Analysis
  9. Loiter          |  0.7099
 10. Landing         |  0.7099
 
-Bechmark Aircraft Comparison
+Benchmark Aircraft Comparison
 
    Parameter   |  Actual Data  | Converged Result |  % Diff. 
 ---------------+---------------+------------------+------------

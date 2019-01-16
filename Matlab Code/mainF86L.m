@@ -9,7 +9,7 @@ designParametersF86L;
 global type
 
 betaGuess = [1 1 0.99 0.94 0.92 0.83 0.82 0.81 0.79 0.73 0.73 0.98];
-WTOGuess = 15000;
+WTOGuess = 18000;
 totalLeg = numel(betaGuess) - 2;
 
 j = 1;

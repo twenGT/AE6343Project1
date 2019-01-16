@@ -1,5 +1,4 @@
 function [ betaf, leg ] = loiterMA( betai, WTO2S, V, h, t, type)
-%Loiter time t in minutes
 
 n = 10;
 betaLeg = zeros(1,n+1);

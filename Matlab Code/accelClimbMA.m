@@ -1,8 +1,5 @@
 function [ betaf, leg ] = accelClimbMA( betai, TSL2WTO, WTO2S, Vi, Vf, hi, hf, mode, type )
 
-%F86L:  type = 1
-%APTA:  type = 2
-
 global g
 
 n = 10;

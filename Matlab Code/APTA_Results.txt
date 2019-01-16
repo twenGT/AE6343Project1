@@ -2,29 +2,34 @@ Converged Results for Advanced Pilot Training Aircraft
 
 Design Point
 
-TOGW(WTO): 22784.7 lbs
 TSL/WTO  : 0.674 
-WTO/S    : 88.90 
+WTO/S    : 88.90 lb/ft^2 
+
+Key Parameters
+
+TOGW(WTO): 22691.8 lb
+TSL      : 15294.3 lbf
+S        : 255.3 ft^2
 
 Mission Analysis
 
    Mission Phase    |   beta
 --------------------+----------
  0. Initial         |  1.0000
- 1. Pre Take Off    |  0.9610
- 2. Take Off Accel. |  0.9560
- 3. Accel. Climb    |  0.9144
- 4. Cruise Climb    |  0.8913
- 5. Rendezvous      |  0.8732
- 6. Refueling Sim.  |  0.8483
- 7. Accel. Climb    |  0.8378
- 8. Cruise          |  0.8236
- 9. Descend         |  0.8236
-10. Combat Training |  0.7404
-11. Accel. Climb    |  0.7256
-12. Cruise          |  0.7072
-13. Landing         |  0.7072
-14. Reserve         |  0.6920
+ 1. Pre Take Off    |  0.9618
+ 2. Take Off Accel. |  0.9568
+ 3. Accel. Climb    |  0.9152
+ 4. Cruise Climb    |  0.8920
+ 5. Rendezvous      |  0.8739
+ 6. Refueling Sim.  |  0.8490
+ 7. Accel. Climb    |  0.8385
+ 8. Cruise          |  0.8243
+ 9. Descend         |  0.8243
+10. Combat Training |  0.7410
+11. Accel. Climb    |  0.7262
+12. Cruise          |  0.7078
+13. Landing         |  0.7078
+14. Reserve         |  0.6926
 
 Minimum Performance Requirements
 
@@ -34,6 +39,6 @@ Sustained g at 15,000 ft MSL  |     8     |     9     |    3.0
 Ceiling                       |  40000ft  |  50000ft  |  50100ft
 Minimum Runway Length         |   8000ft  |   6000ft  |   3000ft
 Payload (Expendable)          |    500lb  |   1000lb  |    750lb
-Range (Unrefueled)            |   1000nm  |   1500nm  |   1734nm
+Range (Unrefueled)            |   1000nm  |   1500nm  |   1728nm
 Cruise Mach Number            |    0.7    |    0.8    |    0.8
 Dash Mach Number              |    0.95   |    1.2    |    1.1

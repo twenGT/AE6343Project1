@@ -1,6 +1,4 @@
 function [ hCeiling ] = ceilingCalc( TSL2WTO, WTO2S, type )
-%UNTITLED2 Summary of this function goes here
-%   Detailed explanation goes here
 
 global BCM
 

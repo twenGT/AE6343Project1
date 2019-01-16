@@ -12,7 +12,7 @@ global type
 %               1    2    3    4    5    6    7    8    9   10
 betaGuess = [1.00 0.95 0.94 0.91 0.85 0.83 0.82 0.80 0.79 0.79...
              0.74 0.73 0.71 0.70 0.68 0.98];
-WTOGuess = 20000;
+WTOGuess = 22000;
 totalLeg = numel(betaGuess) - 2;
 
 j = 1;

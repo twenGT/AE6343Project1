@@ -1,8 +1,5 @@
 function [ betaf, VTO, leg ] = takeOffMA( betai, TSL2WTO, WTO2S, type )
 
-%F86L:  type = 1
-%APTA:  type = 2
-
 global rho_ref
 global CL_Max
 global a_ref

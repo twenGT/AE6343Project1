@@ -2,7 +2,6 @@ function [ range ] = rangeAPTA( WTO, TSL2WTO, WTO2S, betaFinal )
 
 global rho_ref
 global CL_Max
-global BCM
 global WpreTakeOff
 global type
 

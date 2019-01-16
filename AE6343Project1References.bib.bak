@@ -1,0 +1,36 @@
+% Encoding: UTF-8
+
+@Book{White2010,
+  title     = {Fluid Mechanics (Mcgraw-hill Series in Mechanical Engineering)},
+  publisher = {McGraw-Hill Science/Engineering/Math},
+  year      = {2010},
+  author    = {Frank White},
+  isbn      = {978-0-07-352934-9},
+}
+
+@Book{Raymer1992,
+  title     = {Aircraft Design: A Conceptual Approach (AIAA Education Series)},
+  publisher = {American Institute of Aeronautics and Astronautics, Inc.},
+  year      = {1992},
+  author    = {Daniel P. Raymer},
+  isbn      = {0-930403-51-7},
+}
+
+@Book{Mattingly2003,
+  title     = {Aircraft Engine Design, Second Edition},
+  publisher = {American Institute of Aeronautics and Astronautics, Inc.},
+  year      = {2003},
+  author    = {Mattingly, Jack D. and Heiser, William H. and Pratt, David T.},
+  isbn      = {1563475383},
+  date      = {2003-08-11},
+  ean       = {9781563475382},
+  pagetotal = {692},
+}
+
+@Unpublished{Mavris2018,
+  author = {ProfessoDimitri. M. Mavris},
+  title  = {An Energy Based Approach to Constraint Analysis},
+  year   = {2018},
+}
+
+@Comment{jabref-meta: databaseType:bibtex;}

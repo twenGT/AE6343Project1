@@ -3,15 +3,6 @@ function [ CD, K1, CD0 ] = dragCoeff(CL, M, type)
 %Current: type = 1
 %Future:  type = 2
 
-% global AR
-% global e
-
-%ANDERSON, pg.109 Eq.2.30
-%Kp can be found, but Kpp cannot
-%Use K1 directly instead of K1 = Kp + Kpp
-
-% Kp = 1/(pi*e*AR);
-
 %MATTINGLY pg.37 Fig.2.10
 %Current
 if (type == 1)
@@ -51,6 +42,7 @@ else
         CD0 = 0.028;
     end
 end
+
 %K2 = -2*Kpp*CL_min
 %but assumes K2 = 0
 
